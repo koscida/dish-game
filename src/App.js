@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { GameProvider } from "./app/GameContext";
+import MUIResponsiveAppBar from "./components/common/MUIResponsiveAppBar";
+import { Box, Container } from "@mui/material";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<GameProvider>
+			<MUIResponsiveAppBar />
+			<Container>
+				<Box maxWidth="xl">
+					<BrowserRouter>
+						<Routes>
+							{/* Default Route */}
+
+							<Route path="/" element={<Home />} />
+						</Routes>
+					</BrowserRouter>
+					<Outlet />
+				</Box>
+			</Container>
+		</GameProvider>
+	);
 }
 
 export default App;
